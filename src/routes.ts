@@ -1,25 +1,16 @@
-import { Request, Response } from "express";
+import { Router } from "express";
+import { assignedToy, createToy, packedToy, storeStatus } from "./controller";
 
-export const createToy = (req: Request, res: Response) => {
-    res.json({
-        ok: true
-    })
-}
+export const router = Router();
 
-export const packedToy = (req:Request, res: Response) => {
-    res.json({
-        ok: true
-    })
-}
+//crear el juguete
+router.post('/toy', createToy)
 
-export const assignedToy = (req:Request, res: Response) => {
-    res.json({
-        ok: true
-    })
-}
+//empacar el juguete :id es el juguete que se quiere empacar
+router.get('/toy/:id/pack', packedToy)
 
-export const storeStatus = (req:Request, res: Response) => {
-    res.json({
-        ok: true
-    })
-}
+//asignar el juguete
+router.post('/toy/:id/assign', assignedToy)
+
+//ver el estado del taller
+router.get('/workshop', storeStatus)
